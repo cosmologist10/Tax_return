@@ -8,7 +8,7 @@ class TaxProperties(models.Model):
 
     YEAR_CHOICES = []
     for r in range(2011, (datetime.datetime.now().year+1)):
-        YEAR_CHOICES.append(r)
+        YEAR_CHOICES.append((r,r))
 
     TERM_CHOICES = (
             ('MONTHLY', 'Monthly'),
@@ -40,7 +40,7 @@ class TaxProperties(models.Model):
             )
 
 
-    year = models.IntegerField(max_length=4,choices=YEAR_CHOICES,default=datetime.datetime.now().year)
+    year = models.IntegerField('Year',choices=YEAR_CHOICES,default=datetime.datetime.now().year)
     term = models.CharField(max_length = 8,choices=TERM_CHOICES,default='MONTHLY')
     types= models.CharField(max_length = 8, choices = TYPE_CHOICES,default='DIRECT')
     subtype =  models.CharField(max_length = 12,choices = SUBTYPE_CHOICES, null=True)
